@@ -51,3 +51,42 @@ export async function fetchAdvertising(query: string, currentPage: number) {
 
   return advertising;
 }
+
+export type CampaignTable = {
+  eid: string;
+  year: string;
+  name: string;
+};
+
+export async function fetchCampaign(query: string, currentPage: number) {
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "accept-Language": "en",
+      // "Authorization": `Bearer ${token}`,
+    }
+  };
+
+  // const url = `${process.env.NEXT_PUBLIC_API_URL}publishcampaign?page=${1}&per_page=${6}}`;
+
+  const url = 'http://127.0.0.1:5000/api/v1/publishcampaign/?page=1&per_page=6'
+
+
+  try {
+
+    const response =  await axios.get(url, config);
+
+    const data = <CampaignTable[]>response.data.data;
+
+    // console.log(data);
+
+    return data;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch revenue data.');
+  }
+  
+
+}

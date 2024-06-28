@@ -1,14 +1,15 @@
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import { auth } from "@/auth";
-
-import { CreateButton } from "@/components/CreateButton";
+import Link from "next/link";
 import Search from "@/components/Search";
+import { CreateButton } from "@/components/CreateButton";
 import { Suspense } from 'react';
-import Table from "@/components/Advertising/table"
-import { InvoicesTableSkeleton } from '@/components/Advertising/skeletons';
 import Pagination from "@/components/Pagination";
-import { mainMenu } from "./menu";
+import { mainMenu } from "../menu";
+import Table from "@/components/Advertising/campaign/table";
+
+import { InvoicesTableSkeleton } from "@/components/Advertising/skeletons";
 
 import {
     Breadcrumb,
@@ -19,17 +20,8 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 
-import Link from "next/link";
 
-
-export const metadata: Metadata = {
-    title: "eCRM | Módulo de Públicidad",
-    description:
-        "Página principal del Módulo de Públicidad",
-};
-
-
-export default async function AdventisingPage({
+export default async function CampaignPage({
     searchParams,
 }: {
     searchParams?: {
@@ -46,11 +38,12 @@ export default async function AdventisingPage({
     const totalPages = 20;
 
     return (
+
         <DefaultLayout menu={mainMenu}>
             <div className="mx-auto max-w-7xl">
                 <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <h2 className="text-title-md2 font-semibold text-black dark:text-white">
-                        Públicidad
+                        Campañas
                     </h2>
                     <Breadcrumb>
                         <BreadcrumbList>
@@ -61,7 +54,7 @@ export default async function AdventisingPage({
                             </BreadcrumbItem>
                             <BreadcrumbSeparator />
                             <BreadcrumbItem>
-                                <BreadcrumbPage>Públicidad</BreadcrumbPage>
+                                <BreadcrumbPage>Campaña</BreadcrumbPage>
                             </BreadcrumbItem>
                         </BreadcrumbList>
                     </Breadcrumb>
@@ -83,5 +76,7 @@ export default async function AdventisingPage({
 
             </div>
         </DefaultLayout>
-    );
-};
+
+    )
+
+}    

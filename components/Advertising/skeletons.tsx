@@ -90,7 +90,6 @@ export function InvoicesMobileSkeleton() {
     );
 }
 
-
 export function InvoicesTableSkeleton() {
     return (
         <div className="mt-6 flow-root">
