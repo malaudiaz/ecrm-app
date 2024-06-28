@@ -88,8 +88,171 @@ export const CreateForm = () => {
                                 </div>
 
                             </div>
+                      </div>
 
+                      <div className="space-y-4">
 
+                        <div className="flex flex-row gap-4 justify-between">
+
+                            <div className="w-full">
+                                    <FormField
+                                        control={form.control}
+                                        name="campaign"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Campaña</FormLabel>
+                                                <div className="relative">
+                                                    <FormControl>
+                                                        <Input
+                                                            className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                                            {...field}
+                                                            placeholder="Campaña"
+                                                            type="text"
+                                                        />
+                                                    </FormControl>
+                                                </div>
+                                                <FormMessage />
+
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+                                <div className="w-full">
+                                    <FormField
+                                        control={form.control}
+                                        name="discount"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Descuento</FormLabel>
+                                                <div className="relative">
+                                                    <FormControl>
+                                                        <Input
+                                                            className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                                            {...field}
+                                                            placeholder="Descuento"
+                                                            type="text"
+                                                        />
+                                                    </FormControl>
+                                                </div>
+                                                <FormMessage />
+
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+                            </div>
+                     </div>
+
+                     <div className="space-y-4">
+
+                        <div className="flex flex-row gap-4 justify-between">
+
+                            <div className="w-full">
+                                    <FormField
+                                        control={form.control}
+                                        name="invoiceFormat"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Formato de Factura</FormLabel>
+                                                <div className="relative">
+                                                    <FormControl>
+                                                        <Input
+                                                            className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                                            {...field}
+                                                            placeholder="Formato de Factura"
+                                                            type="text"
+                                                        />
+                                                    </FormControl>
+                                                </div>
+                                                <FormMessage />
+
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+                                <div className="w-full">
+                                    <FormField
+                                        control={form.control}
+                                        name="observation"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Observación</FormLabel>
+                                                <div className="relative">
+                                                    <FormControl>
+                                                        <Input
+                                                            className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                                            {...field}
+                                                            placeholder="Observación"
+                                                            type="text"
+                                                        />
+                                                    </FormControl>
+                                                </div>
+                                                <FormMessage />
+
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+                            </div>
+                      </div>
+
+                                            <div className="space-y-4">
+
+                        <div className="flex flex-row gap-4 justify-between">
+
+                            <div className="w-full">
+                                    <FormField
+                                        control={form.control}
+                                        name="payEnd"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Pago Final</FormLabel>
+                                                <div className="relative">
+                                                    <FormControl>
+                                                        <Input
+                                                            className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                                            {...field}
+                                                            placeholder="Pago Final"
+                                                            type="text"
+                                                        />
+                                                    </FormControl>
+                                                </div>
+                                                <FormMessage />
+
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+                                <div className="w-full">
+                                    <FormField
+                                        control={form.control}
+                                        name="payInit"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Pago Inicial</FormLabel>
+                                                <div className="relative">
+                                                    <FormControl>
+                                                        <Input
+                                                            className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                                            {...field}
+                                                            placeholder="Pago Inicial"
+                                                            type="text"
+                                                        />
+                                                    </FormControl>
+                                                </div>
+                                                <FormMessage />
+
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+                            </div>
                         </div>
 
                     </form>
