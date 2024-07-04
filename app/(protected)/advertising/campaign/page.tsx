@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
-import { auth } from "@/auth";
 import Link from "next/link";
 import Search from "@/components/Search";
 import { CreateButton } from "@/components/CreateButton";
@@ -9,7 +8,8 @@ import Pagination from "@/components/Pagination";
 import { mainMenu } from "../menu";
 import Table from "@/components/Advertising/campaign/table";
 
-import { InvoicesTableSkeleton } from "@/components/Advertising/skeletons";
+import { CampaignTableSkeleton } from "@/components/Advertising/skeletons";
+import { notFound } from "next/navigation";
 
 import {
     Breadcrumb,
@@ -20,6 +20,13 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 
+import { fetchCampaign } from '@/lib/Advertising/data';
+
+export const metadata: Metadata = {
+    title: "Públicidad | Campañas",
+    description:
+        "Campañas Publicitarias",
+};
 
 export default async function CampaignPage({
     searchParams,
@@ -29,13 +36,16 @@ export default async function CampaignPage({
         page?: string;
     };
 }) {
-    const session = await auth();
-
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
 
-    // const totalPages = await fetchInvoicesPages(query);
-    const totalPages = 20;
+    const response = await fetchCampaign(query, currentPage, 5);
+
+    if (!response?.total_pages) {
+        notFound();
+    }   
+
+    const total_pages = response?.total_pages;
 
     return (
 
@@ -49,12 +59,12 @@ export default async function CampaignPage({
                         <BreadcrumbList>
                             <BreadcrumbItem>
                                 <BreadcrumbLink asChild>
-                                    <Link href="/dashboard">Inicio</Link>
+                                    <Link href="/advertising">Publicidad</Link>
                                 </BreadcrumbLink>
                             </BreadcrumbItem>
                             <BreadcrumbSeparator />
                             <BreadcrumbItem>
-                                <BreadcrumbPage>Campaña</BreadcrumbPage>
+                                <BreadcrumbPage>Campañas</BreadcrumbPage>
                             </BreadcrumbItem>
                         </BreadcrumbList>
                     </Breadcrumb>
@@ -63,15 +73,15 @@ export default async function CampaignPage({
             <div className="w-full">
                 <div className="mt-4 flex flex-row items-center justify-between gap-2 md:mt-8">
                     <Search placeholder="Buscar publicidad..." />
-                    <CreateButton href="/advertising/create" label="Nueva" />
+                    <CreateButton href="/advertising/campaign/create" label="Nueva" />
                 </div>
 
-                <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
-                    <Table query={query} currentPage={currentPage} />
+                <Suspense key={query + currentPage} fallback={<CampaignTableSkeleton />}>
+                    <Table currentPage={currentPage} query={query} />
                 </Suspense>
 
                 <div className="mt-5 flex w-full justify-center">
-                    <Pagination totalPages={totalPages} />
+                    <Pagination totalPages={total_pages} />
                 </div>
 
             </div>

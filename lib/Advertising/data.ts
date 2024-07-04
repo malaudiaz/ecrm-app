@@ -1,13 +1,14 @@
+'use server'
+
 import axios from "axios";
+import { auth } from "@/auth";
+import { revalidatePath } from "next/cache";
+import * as z from "zod";
+import { redirect } from 'next/navigation';
 
-const ITEMS_PER_PAGE = 10;
+import { AdvertisingTable, ResponseObj, ResponseDict } from "../definitions";
+import { CampaignSchema } from "@/schemas/Advertising";
 
-export type AdvertisingTable = {
-  invoice: string;
-  paymentStatus: string;
-  totalAmount: number;
-  paymentMethod: "Credit" | "Cash";
-};
 
 export async function fetchAdvertising(query: string, currentPage: number) {
   const advertising = <AdvertisingTable[]>[
@@ -52,41 +53,142 @@ export async function fetchAdvertising(query: string, currentPage: number) {
   return advertising;
 }
 
-export type CampaignTable = {
-  eid: string;
-  year: string;
-  name: string;
+const config = {
+  headers: {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "accept-Language": "en",
+    "Authorization": ""
+  }
 };
 
-export async function fetchCampaign(query: string, currentPage: number) {
+export async function fetchCampaign(query: string, currentPage: number, perPage: number) {
 
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "accept-Language": "en",
-      // "Authorization": `Bearer ${token}`,
-    }
-  };
+  const session = await auth();
+ 
+  config.headers["Authorization"] = `Bearer ${session?.user.accessToken}`;
 
-  // const url = `${process.env.NEXT_PUBLIC_API_URL}publishcampaign?page=${1}&per_page=${6}}`;
-
-  const url = 'http://127.0.0.1:5000/api/v1/publishcampaign/?page=1&per_page=6'
-
+  const url = `${process.env.NEXT_PUBLIC_API_URL}publishcampaign?page=${currentPage}&per_page=${perPage}&query=${query}`;
 
   try {
-
     const response =  await axios.get(url, config);
 
-    const data = <CampaignTable[]>response.data.data;
+    const data = <ResponseObj>response.data;
 
-    // console.log(data);
+    if (!data.success) {
+      throw new Error(data.detail);      
+    }
 
     return data;
   } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to fetch revenue data.');
+      // console.error('Database Error:', error);
+      revalidatePath('/advertising/campaign');
   }
+}
+
+export async function deleteCampaign(id: string) {
+
+  const session = await auth();
+ 
+  config.headers["Authorization"] = `Bearer ${session?.user.accessToken}`;
+
+  const url = `${process.env.NEXT_PUBLIC_API_URL}publishcampaign/${id}`;
+
+  try {
+    const response =  await axios.delete(url, config);
+
+    const data = <ResponseObj>response.data;
+
+    if (!data.success) {
+      throw new Error(data.detail);      
+    }
+
+    revalidatePath("/advertising/campaign");
+    return data;
+  } catch (error) {
+      console.error('Database Error:', error);
+    throw new Error('Failed to delete campaign.');
+  }
+}
+
+export const saveCampaign = async (values: z.infer<typeof CampaignSchema>) => {
+  const validateFields = CampaignSchema.safeParse(values);
+
+  if (!validateFields.success) {
+      return {error: "Error en los datos"};
+  }
+
+  const session = await auth();
+ 
+  config.headers["Authorization"] = `Bearer ${session?.user.accessToken}`;
+
+  const url = `${process.env.NEXT_PUBLIC_API_URL}publishcampaign`;
+
+  try {
+    const response =  await axios.post(url, validateFields.data, config);
+
+    const data = <ResponseObj>response.data;
+
+    if (!data.success) {
+      throw new Error(data.detail);      
+    }
+
+    return data;
+  } catch (error) {
+      console.error('Database Error:', error);
+    throw new Error('Failed to create campaign.');
+  }
+}
+
+export async function fetchCampaignById(id: string) {
+
+  const session = await auth();
+ 
+  config.headers["Authorization"] = `Bearer ${session?.user.accessToken}`;
+
+  const url = `${process.env.NEXT_PUBLIC_API_URL}publishcampaign/${id}`;
+
+  try {
+    const response =  await axios.get(url, config);
+
+    const data = <ResponseDict>response.data;
+
+    if (!data.success) {
+      throw new Error(data.detail);      
+    }
+
+    return data;
+  } catch (error) {
+      console.error('Database Error:', error);
+      throw new Error('Failed to find campaign.');
+  }
+}
+
+export const updateCampaign = async (values: z.infer<typeof CampaignSchema>) => {
+  const validateFields = CampaignSchema.safeParse(values);
+
+  if (!validateFields.success) {
+      return {error: "Error en los datos"};
+  }
+
+  const session = await auth();
+ 
+  config.headers["Authorization"] = `Bearer ${session?.user.accessToken}`;
+
+  const id = validateFields.data.eid;
+
+  const url = `${process.env.NEXT_PUBLIC_API_URL}publishcampaign/${id}`;
+
+  try {
+    
+    await axios.put(url, {name: validateFields.data.name, year: validateFields.data.year}, config); 
   
+  } catch (error) {
+      console.error('Database Error:', error);
+    throw new Error('Failed to create campaign.');
+  }
+
+  revalidatePath('/advertising/campaign');
+  redirect('/advertising/campaign');
 
 }

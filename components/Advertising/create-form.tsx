@@ -24,7 +24,7 @@ export const CreateForm = () => {
 
 
     return (
-        <Card className="w-full shadow-md">
+        <Card className="w-full shadow-md border border-neutral-200">
             <CardHeader>
                 <strong>Crear Publicidad</strong>
             </CardHeader>

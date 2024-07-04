@@ -15,7 +15,7 @@ export default function DefaultLayout({
   return (
     <html lang="es">
       <body>
-        <div className="flex h-screen overflow-hidden">
+        <div className="flex h-screen overflow-hidden bg-white dark:bg-neutral-700">
           <Sidebar menu={menu} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
             <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />

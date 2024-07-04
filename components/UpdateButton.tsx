@@ -1,15 +1,15 @@
 "use client"
 
 import Link from "next/link";
-import { Button } from "./ui/button";
 import { PencilIcon } from '@heroicons/react/24/outline';
 
-export const UpdateButton = ({ id }: { id: string }) => {
+export const UpdateButton = ({ href }: { href: string; }) => {
     return (
-        <Button variant={"link"} size={"sm"} className="font-normal w-full" asChild>
-            <Link href={`/dashboard/invoices/${id}/edit`}>
-                <PencilIcon className="h-5 md:ml-4" />
+        <button className="rounded-md border border-sky-700 p-2 hover:bg-neutral-200">
+            <Link href={href}>
+                <span className="sr-only">Edit</span>
+                <PencilIcon className="h-5" />
             </Link>
-        </Button>
+        </button>
     )
 }

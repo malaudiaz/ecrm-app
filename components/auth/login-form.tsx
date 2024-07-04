@@ -74,14 +74,14 @@ export const LoginForm = () => {
                                     <div className="relative">
                                         <FormControl>
                                             <Input
-                                                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                                className="peer block w-full rounded-md border border-neutral-200 py-[9px] pl-10 text-sm outline-sky-500 placeholder:text-neutral-200"
                                                 {...field}
                                                 disabled={isPending}
                                                 placeholder="Nombre de usuario"
                                                 type="text"
                                             />
                                         </FormControl>
-                                        <UserIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                                        <UserIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-neutral-500 peer-focus:text-neutral-900" />
                                     </div>
                                     <FormMessage />
 
@@ -100,18 +100,18 @@ export const LoginForm = () => {
                                     <div className="relative">
                                         <FormControl>
                                             <Input
-                                                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                                className="peer block w-full rounded-md border border-neutral-200 py-[9px] pl-10 text-sm outline-sky-500 placeholder:text-gray-500"
                                                 {...field}
                                                 disabled={isPending}
                                                 placeholder="password"
                                                 type={showPassword ? "text" : "password"}
                                             />
                                         </FormControl>
-                                        <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                                        <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-neutral-500 peer-focus:text-neutral-900" />
 
                                         {showPassword ?
-                                            <EyeIcon className="cursor-pointer absolute end-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" onClick={(e) => handleClickShowPassword(e)} /> :
-                                            <EyeSlashIcon className="cursor-pointer absolute end-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" onClick={(e) => handleClickShowPassword(e)} />
+                                            <EyeIcon className="cursor-pointer absolute end-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-neutral-500 peer-focus:text-neutral-900" onClick={(e) => handleClickShowPassword(e)} /> :
+                                            <EyeSlashIcon className="cursor-pointer absolute end-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-neutral-500 peer-focus:text-neutral-900" onClick={(e) => handleClickShowPassword(e)} />
                                         }
 
                                     </div>
