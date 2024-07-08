@@ -15,9 +15,9 @@ export type AdvertisingTable = {
 };
 
 export type CampaignType = {
-  eid: string;
-  year: string;
-  name: string;
+  eid?: string | undefined;
+  year?: string | undefined;
+  name?: string | undefined;
 };
 
 export type ResponseDict = {
@@ -25,13 +25,13 @@ export type ResponseDict = {
   detail: string;
   status_code: string;
   total_pages: number;
-  data: {};
+  data: {eid?: string, name?: string, year?:string};
 }
 
 export type ResponseObj = {
   success: boolean;
   detail: string;
-  status_code: string;
-  total_pages: number;
-  data: [];
+  status_code?: string;
+  total_pages?: number;
+  data: [{eid?: string, name?: string, year?:string}];
 };

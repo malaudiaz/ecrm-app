@@ -1,5 +1,6 @@
-import AdvertisingLayout from "../layout";
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import CreateForm from "@/components/Advertising/create-form";
+import { mainMenu } from "../menu";
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -14,7 +15,7 @@ import Link from "next/link";
 
 export default async function AdvertisingCreate() {
     return (
-        <AdvertisingLayout>
+        <DefaultLayout menu={mainMenu}>
             <div className="mx-auto max-w-7xl">
                 <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <h2 className="text-title-md2 font-semibold text-black dark:text-white">
@@ -42,6 +43,6 @@ export default async function AdvertisingCreate() {
                 </div>
             </div>
             <CreateForm />
-        </AdvertisingLayout>
+        </DefaultLayout>
     )
 }

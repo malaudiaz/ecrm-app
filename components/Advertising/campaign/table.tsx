@@ -3,7 +3,6 @@ import { DeleteButton } from '../../DeleteButton';
 import { fetchCampaign } from '@/lib/Advertising/data';
 import { deleteCampaign } from '@/lib/Advertising/data';
 import { notFound } from "next/navigation";
-import { ResponseObj } from '@/lib/definitions';
 import {
   Table,
   TableBody,
