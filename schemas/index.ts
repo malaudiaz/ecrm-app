@@ -2,15 +2,15 @@ import * as z from "zod";
 
 export const LoginSchema = z.object({
     username: z
-        .string({ required_error: "Nombre de usuario requerido" })
-        .min(5, { message: "El nombre de usuario debe tener al menos 5 caracteres" })
-        .max(20, { message: "El nombre de usuario no debe tener mas de 20 caracteres" })
-        .trim(),
+        .string()
+            .min(5, { message: "El nombre de usuario debe tener al menos 5 caracteres" })
+            .max(20, { message: "El nombre de usuario no debe tener mas de 20 caracteres" })
+            .trim(),
     password: z
-        .string({ required_error: "Contraseña requerida" })
-        .min(8, { message: "La contraseña debe tener al menos 8 caracteres" })
-        .max(20, { message: "La contraseña no debe exceder los 20 caracteres" })
-        .trim(),   
+        .string()
+            .min(8, { message: "La contraseña debe tener al menos 8 caracteres" })
+            .max(20, { message: "La contraseña no debe exceder los 20 caracteres" })
+            .trim(),   
 })
 
 export const RegisterSchema = z.object({

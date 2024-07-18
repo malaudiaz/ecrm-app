@@ -29,7 +29,7 @@ export const mainMenu: IMenu[] = [
         </svg>,
         text: "Públicidad",
         href: "/advertising",
-        path: "home"
+        path: "advertising"
     },
     {
         icon: <svg

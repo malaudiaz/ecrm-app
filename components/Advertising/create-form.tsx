@@ -2,11 +2,14 @@
 
 import * as z from "zod";
 import { Card, CardContent, CardHeader } from "../ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription } from "../ui/form";
 import { AdvertisingSchema } from '@/schemas/Advertising';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
+import { ComboboxDemo } from "../Partner/Finder";
+import { CheckCircleIcon } from '@heroicons/react/20/solid';
+import { useFormStatus } from 'react-dom';
 
 import {
     Select,
@@ -18,18 +21,20 @@ import {
     SelectLabel
 } from "@/components/ui/select"
 
+import { Button } from "@/components/ui/button"
+import { FindPartner } from "../Partner/Find";
 
 export const CreateForm = () => {
 
     const form = useForm<z.infer<typeof AdvertisingSchema>>({
         resolver: zodResolver(AdvertisingSchema),
         defaultValues: {
-            partner: "", contact: "", campaign: "", discount: 0, invoiceFormat: "", observation: "", payEnd: 0, payInit: 0
+            partner: "", contact: "", campaign: "", discount: "", invoiceFormat: "", observation: "", payEnd: "", payInit: ""
         }
     });
 
     const onSubmit = (values: z.infer<typeof AdvertisingSchema>) => {
-        console.log("save");
+        console.log(values);
     }
 
 
@@ -55,16 +60,22 @@ export const CreateForm = () => {
                                         <FormLabel>Cliente</FormLabel>
                                         <div className="relative">
                                             <FormControl>
-                                                <Input
-                                                    className="peer block w-full rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
-                                                    {...field}
-                                                    placeholder="Cliente"
-                                                    type="text"
-                                                />
+                                                <ComboboxDemo field={field} />
                                             </FormControl>
                                         </div>
                                         <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
 
+                            <FormField
+                                control={form.control}
+                                name="partner"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Cliente</FormLabel>
+                                        <FindPartner field={field} />
+                                        <FormMessage />
                                     </FormItem>
                                 )}
                             />
@@ -78,7 +89,7 @@ export const CreateForm = () => {
                                         <div className="relative">
                                             <FormControl>
 
-                                                <Select>
+                                                <Select name="contact" onValueChange={field.onChange}>
                                                     <SelectTrigger className="w-[280px]">
                                                         <SelectValue placeholder="Select a timezone" />
                                                     </SelectTrigger>
@@ -157,7 +168,7 @@ export const CreateForm = () => {
                                         <div className="relative">
                                             <FormControl>
 
-                                                <Select name="campaign">
+                                                <Select {...field} onValueChange={field.onChange}>
                                                     <SelectTrigger className="w-[280px]">
                                                         <SelectValue placeholder="Select a timezone" />
                                                     </SelectTrigger>
@@ -235,7 +246,7 @@ export const CreateForm = () => {
                                         <div className="relative">
                                             <FormControl>
                                                 <Input
-                                                    className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                                    className="peer block w-full rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
                                                     {...field}
                                                     placeholder="Formato de Factura"
                                                     type="text"
@@ -257,7 +268,7 @@ export const CreateForm = () => {
                                         <div className="relative">
                                             <FormControl>
                                                 <Input
-                                                    className="peer block  rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
+                                                    className="peer block w-full rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
                                                     {...field}
                                                     placeholder="Pago Final"
                                                     type="text"
@@ -280,7 +291,7 @@ export const CreateForm = () => {
                                         <div className="relative">
                                             <FormControl>
                                                 <Input
-                                                    className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                                    className="peer block w-full rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
                                                     {...field}
                                                     placeholder="Pago Inicial"
                                                     type="text"
@@ -302,7 +313,7 @@ export const CreateForm = () => {
                                         <div className="relative">
                                             <FormControl>
                                                 <Input
-                                                    className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                                    className="peer block w-full rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
                                                     {...field}
                                                     placeholder="Descuento"
                                                     type="text"
@@ -325,7 +336,7 @@ export const CreateForm = () => {
                                         <div className="relative">
                                             <FormControl>
                                                 <Input
-                                                    className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                                    className="peer block w-full rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
                                                     {...field}
                                                     placeholder="Observación"
                                                     type="text"
@@ -338,8 +349,12 @@ export const CreateForm = () => {
                                 )}
                             />
 
+
                         </div>
 
+                        <div className="flex justify-end">
+                            <SubmitButton />
+                        </div>
 
 
                     </form>
@@ -351,3 +366,13 @@ export const CreateForm = () => {
     )
 };
 export default CreateForm;
+
+function SubmitButton() {
+    const { pending } = useFormStatus();
+
+    return (
+        <Button variant={"custom"} size={"sm"} className="mt-4" aria-disabled={pending}>
+            <CheckCircleIcon className="ml-auto mr-2 h-5 w-5 text-gray-50" />Guardar
+        </Button>
+    );
+}

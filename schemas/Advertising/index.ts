@@ -2,7 +2,8 @@ import * as z from "zod";
 
 export const AdvertisingSchema = z.object({
     partner: z
-        .string({ required_error: "cliente requerido" })
+        .string()
+            .min(1, { message: "El cliente es requerido" })
         .trim(),
     contact: z
         .string({ required_error: "Contacto requerido" })
@@ -14,12 +15,11 @@ export const AdvertisingSchema = z.object({
     invoiceFormat: z
         .string({ required_error: "Forma de Facturar requerida" }),
     payInit: z
-        .number({ required_error: "Pago inicial requerido" }),
+        .string({ required_error: "Pago inicial requerido" }),
     payEnd: z
-        .number({ required_error: "Pago Final requerido" }),
+        .string({ required_error: "Pago Final requerido" }),
     discount: z
-        .number(),
-
+        .string()
 })
 
 export const CampaignSchema = z.object({
