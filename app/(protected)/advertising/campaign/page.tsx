@@ -77,11 +77,11 @@ export default async function CampaignPage({
                 </div>
 
                 <Suspense key={query + currentPage} fallback={<CampaignTableSkeleton />}>
-                    <Table currentPage={currentPage} query={query} />
+                    {total_pages > 0 && <Table currentPage={currentPage} query={query} /> }
                 </Suspense>
 
                 <div className="mt-5 flex w-full justify-center">
-                    <Pagination totalPages={total_pages} />
+                    {total_pages > 0 && <Pagination totalPages={total_pages} /> }
                 </div>
 
             </div>
