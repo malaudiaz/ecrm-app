@@ -41,11 +41,11 @@ export default async function CampaignPage({
 
     const response = await fetchCampaign(query, currentPage, 5);
 
-    if (!response?.total_pages) {
-        notFound();
-    }   
+    // if (!response?.total_pages) {
+    //     notFound();
+    // }   
 
-    const total_pages = response?.total_pages;
+    const total_pages = response?.total_pages || 1;
 
     return (
 

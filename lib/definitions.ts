@@ -35,3 +35,11 @@ export type ResponseObj = {
   total_pages?: number;
   data: [{eid?: string, name?: string, year?:string}];
 };
+
+export type ResponseObjDepartment = {
+  success: boolean;
+  detail: string;
+  status_code?: string;
+  total_pages?: number;
+  data: [{eid?: string, code?: string, name?:string, store_code_legal?:string,store_code_natural?:string}];
+};

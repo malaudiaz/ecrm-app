@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 import * as z from "zod";
 import { redirect } from 'next/navigation';
 
-import { AdvertisingTable, ResponseObj, ResponseDict } from "../definitions";
+import { AdvertisingTable, ResponseObj, ResponseDict, ResponseObjDepartment } from "../definitions";
 import { CampaignSchema } from "@/schemas/Advertising";
 
 
@@ -191,4 +191,28 @@ export const updateCampaign = async (values: z.infer<typeof CampaignSchema>) => 
   revalidatePath('/advertising/campaign');
   redirect('/advertising/campaign');
 
+}
+
+export async function fetchDepartments(query: string, currentPage: number, perPage: number) {
+
+  const session = await auth();
+ 
+  config.headers["Authorization"] = `Bearer ${session?.user.accessToken}`;
+
+  const url = `${process.env.NEXT_PUBLIC_API_URL}publishdepartament?page=${currentPage}&per_page=${perPage}&query=${query}`;
+
+  try {
+    const response =  await axios.get(url, config);
+
+    const data = <ResponseObjDepartment>response.data;
+
+    if (!data.success) {
+      throw new Error(data.detail);      
+    }
+
+    return data;
+  } catch (error) {
+      // console.error('Database Error:', error);
+      revalidatePath('/advertising/departments');
+  }
 }
