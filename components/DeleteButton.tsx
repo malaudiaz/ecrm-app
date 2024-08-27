@@ -4,7 +4,15 @@ import Swal from "sweetalert2";
 import { TrashIcon } from '@heroicons/react/24/outline';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-export const DeleteButton = ({ id, onDeleted }: { id: string | undefined; onDeleted: Function}) => {
+interface DeleteButtonProps {
+    id?: string,
+    onDeleted: Function,
+    alertTitle: string,
+    alertText: string
+}
+
+
+export const DeleteButton = ({ id, onDeleted, alertTitle, alertText }: DeleteButtonProps) => {
     const searchParams = useSearchParams();
     const { replace } = useRouter();
     const pathname = usePathname();
@@ -18,7 +26,7 @@ export const DeleteButton = ({ id, onDeleted }: { id: string | undefined; onDele
             replace(`${pathname}?${params.toString()}`);
                     
             Swal.fire({
-                title: "Campañas",
+                title: alertTitle,
                 text: detail,
                 icon: "success",
                 showCancelButton: false,
@@ -28,7 +36,7 @@ export const DeleteButton = ({ id, onDeleted }: { id: string | undefined; onDele
             });
         } else {
             Swal.fire({
-                title: "Campañas",
+                title: alertTitle,
                 text: detail,
                 icon: "error",
                 showCancelButton: false,
@@ -42,8 +50,8 @@ export const DeleteButton = ({ id, onDeleted }: { id: string | undefined; onDele
     return (
         <form action={() => {
             Swal.fire({
-                title: "¿ Eliminar ?",
-                text: "¿ Deseas eliminar ésta Campaña ?",
+                title: alertTitle,
+                text: alertText,
                 icon: "question",
                 showCancelButton: true,
                 cancelButtonText: "No",

@@ -20,6 +20,15 @@ export type CampaignType = {
   name?: string | undefined;
 };
 
+export type DepartmentType = {
+  eid?: string | undefined;
+  code?: string | undefined;
+  name?:string | undefined;
+  comercial_group_eid?:string | undefined;
+  store_code_legal?:string | undefined;
+  store_code_natural?:string | undefined;
+}
+
 export type ResponseDict = {
   success: boolean;
   detail: string;
@@ -41,5 +50,20 @@ export type ResponseObjDepartment = {
   detail: string;
   status_code?: string;
   total_pages?: number;
-  data: [{eid?: string, code?: string, name?:string, store_code_legal?:string,store_code_natural?:string}];
+  data: [{eid?: string, code?: string, name?:string, comercial_group_eid?:string, store_code_legal?:string,store_code_natural?:string}];
+};
+export type ResponseObjSpecialist = {
+  success: boolean;
+  detail: string;
+  status_code?: string;
+  total_pages?: number;
+  data: [{eid?: string, user_name?: string, code?:string, publish_departament_eid?:string, is_active?:boolean}];
+};
+
+export type ResponseDicDepartment = {
+  success: boolean;
+  detail: string;
+  status_code?: string;
+  total_pages?: number;
+  data: {eid?: string, code?: string, name?:string, comercial_group_eid?:string, store_code_legal?:string,store_code_natural?:string};
 };

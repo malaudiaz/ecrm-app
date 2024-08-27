@@ -1,7 +1,10 @@
-import { UpdateButton } from '../../UpdateButton';
-import { DeleteButton } from '../../DeleteButton';
-import { fetchCampaign, fetchDepartments } from '@/lib/Advertising/data';
-import { deleteCampaign } from '@/lib/Advertising/data';
+import { UpdateButton } from "../../UpdateButton";
+import { DeleteButton } from "../../DeleteButton";
+import {
+  deleteDepartment,
+  fetchCampaign,
+  fetchDepartments,
+} from "@/lib/Advertising/data";
 import { notFound } from "next/navigation";
 import {
   Table,
@@ -10,21 +13,20 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 
 export default async function DepartmentTable({
   query,
-  currentPage
+  currentPage,
 }: {
   query: string;
   currentPage: number;
 }) {
-
   const response = await fetchDepartments(query, currentPage, 5);
 
-//   if (!response?.data) {
-//     notFound();
-//   }
+  //   if (!response?.data) {
+  //     notFound();
+  //   }
 
   const department = response?.data;
 
@@ -46,14 +48,25 @@ export default async function DepartmentTable({
                     <p className="text-sm text-neutral-500">{item.name}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-neutral-500">{item.store_code_legal}</p>
+                    <p className="text-sm text-neutral-500">
+                      {item.store_code_legal}
+                    </p>
                   </div>
                   <div>
-                    <p className="text-sm text-neutral-500">{item.store_code_natural}</p>
+                    <p className="text-sm text-neutral-500">
+                      {item.store_code_natural}
+                    </p>
                   </div>
                   <div className="flex justify-between items-center gap-1">
-                    <UpdateButton href={`/advertising/department/${item.eid}/edit`} />
-                    <DeleteButton id={item.eid} onDeleted={deleteCampaign.bind(item.eid)} />
+                    <UpdateButton
+                      href={`/advertising/department/${item.eid}/edit`}
+                    />
+                    <DeleteButton
+                      id={item.eid}
+                      onDeleted={deleteDepartment}
+                      alertTitle="Eliminar Departamentos"
+                      alertText="Desea eliminar este departamento ?"
+                    />
                   </div>
                 </div>
               </div>
@@ -62,11 +75,19 @@ export default async function DepartmentTable({
 
           <Table className="hidden md:table w-full text-neutral-900">
             <TableHeader className='className="rounded-lg text-left text-sm font-normal"'>
-              <TableRow className='border-neutral-200'>
-                <TableHead className="px-4 py-5 font-medium sm:pl-6">Codigo</TableHead>
-                <TableHead className="px-4 py-5 font-medium sm:pl-6">Nombre</TableHead>
-                <TableHead className="px-4 py-5 font-medium sm:pl-6">Codigo empresa</TableHead>
-                <TableHead className="px-4 py-5 font-medium sm:pl-6">Codigo empresa</TableHead>
+              <TableRow className="border-neutral-200">
+                <TableHead className="px-4 py-5 font-medium sm:pl-6">
+                  Codigo
+                </TableHead>
+                <TableHead className="px-4 py-5 font-medium sm:pl-6">
+                  Nombre
+                </TableHead>
+                <TableHead className="px-4 py-5 font-medium sm:pl-6">
+                  Codigo empresa
+                </TableHead>
+                <TableHead className="px-4 py-5 font-medium sm:pl-6">
+                  Codigo empresa
+                </TableHead>
                 <TableHead className="relative py-3 pl-6 pr-3"></TableHead>
               </TableRow>
             </TableHeader>
@@ -76,14 +97,29 @@ export default async function DepartmentTable({
                   key={item.eid}
                   className="w-full border-b border-b-neutral-200 py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
                 >
-                  <TableCell className="whitespace-nowrap py-3 pl-6 pr-3">{item.code}</TableCell>
-                  <TableCell className="whitespace-nowrap py-3 pl-6 pr-3">{item.name}</TableCell>
-                  <TableCell className="whitespace-nowrap py-3 pl-6 pr-3">{item.store_code_legal}</TableCell>
-                  <TableCell className="whitespace-nowrap py-3 pl-6 pr-3">{item.store_code_natural}</TableCell>
-                  <TableCell className='whitespace-nowrap py-3 pl-6 pr-3'>
+                  <TableCell className="whitespace-nowrap py-3 pl-6 pr-3">
+                    {item.code}
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap py-3 pl-6 pr-3">
+                    {item.name}
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap py-3 pl-6 pr-3">
+                    {item.store_code_legal}
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap py-3 pl-6 pr-3">
+                    {item.store_code_natural}
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">
-                      <UpdateButton href={`/advertising/campaign/${item.eid}/edit`} />
-                      <DeleteButton id={item.eid} onDeleted={deleteCampaign} />
+                      <UpdateButton
+                        href={`/advertising/departments/${item.eid}/edit`}
+                      />
+                      <DeleteButton
+                        id={item.eid}
+                        onDeleted={deleteDepartment}
+                        alertTitle="Eliminar Departamentos"
+                        alertText="Desea eliminar este departamento ?"
+                      />
                     </div>
                   </TableCell>
                 </TableRow>
