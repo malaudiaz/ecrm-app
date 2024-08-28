@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useFormStatus } from "react-dom";
 import { CheckCircleIcon } from "@heroicons/react/20/solid";
+import { Checkbox } from "@/components/ui/checkbox"
 
 import { saveSpecialist } from "@/lib/Advertising/data";
 import Swal from "sweetalert2";
@@ -137,27 +138,21 @@ export const CreateForm = () => {
                 )}
               />
 
-              {/* <FormField
+              <FormField
                 control={form.control}
                 name="is_active"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Codigo Departamento</FormLabel>
+                    <FormLabel>Activo/Inactivo</FormLabel>
                     <div className="relative">
                       <FormControl>
-                        <Input
-                          className="peer block w-[100px] rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
-                          {...field}
-                          disabled={isPending}
-                          placeholder="Codigo Departamento"
-                          type="checkbox"
-                        />
+                        <Checkbox id="is_active" />
                       </FormControl>
                     </div>
                     <FormMessage />
                   </FormItem>
                 )}
-              /> */}
+              />
             </div>
 
             <div className="flex justify-end">
