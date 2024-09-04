@@ -58,7 +58,7 @@ export default async function SpecialistTable({
                       id={item.eid}
                       onDeleted={deleteCampaign}
                       alertTitle="Eliminar Especialista"
-                      alertText="Desea eliminar esta especialista ?"
+                      alertText="Desea eliminar éste especialista ?"
                     />
                   </div>
                 </div>
@@ -100,7 +100,7 @@ export default async function SpecialistTable({
                     {item.publish_departament_eid}
                   </TableCell>
                   <TableCell className="whitespace-nowrap py-3 pl-6 pr-3">
-                    {item.is_active}
+                    {item.is_active ? "Sí" : "No"}
                   </TableCell>
                   <TableCell className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">
@@ -110,8 +110,8 @@ export default async function SpecialistTable({
                       <DeleteButton
                         id={item.eid}
                         onDeleted={deleteCampaign}
-                        alertTitle="Eliminar Campaña"
-                        alertText="Desea eliminar esta campaña ?"
+                        alertTitle="Eliminar Especialistas"
+                        alertText="Desea eliminar éste especialista ?"
                       />
                     </div>
                   </TableCell>

@@ -9,7 +9,6 @@ import { mainMenu } from "../menu";
 import Table from "@/components/Advertising/campaign/table";
 
 import { CampaignTableSkeleton } from "@/components/Advertising/skeletons";
-import { notFound } from "next/navigation";
 
 import {
     Breadcrumb,
@@ -40,10 +39,6 @@ export default async function CampaignPage({
     const currentPage = Number(searchParams?.page) || 1;
 
     const response = await fetchCampaign(query, currentPage, 5);
-
-    // if (!response?.total_pages) {
-    //     notFound();
-    // }   
 
     const total_pages = response?.total_pages || 1;
 

@@ -36,10 +36,6 @@ export default async function DepartmentsPage({
 
   const response = await fetchDepartments(query, currentPage, 5);
 
-  //   if (!response?.total_pages) {
-  //     notFound();
-  //   }
-
   const total_pages = response?.total_pages || 1;
 
   return (
@@ -73,11 +69,11 @@ export default async function DepartmentsPage({
           key={query + currentPage}
           fallback={<DepartmentTableSkeleton />}
         >
-          <DepartmentTable currentPage={currentPage} query={query} />
+          {total_pages > 0 && <DepartmentTable currentPage={currentPage} query={query} /> }
         </Suspense>
 
         <div className="mt-5 flex w-full justify-center">
-          <Pagination totalPages={total_pages} />
+          {total_pages > 0 && <Pagination totalPages={total_pages} /> }
         </div>
       </div>
     </DefaultLayout>

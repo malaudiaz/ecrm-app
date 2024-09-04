@@ -24,9 +24,9 @@ export default async function DepartmentTable({
 }) {
   const response = await fetchDepartments(query, currentPage, 5);
 
-  //   if (!response?.data) {
-  //     notFound();
-  //   }
+  if (!response?.data) {
+    notFound();
+  }
 
   const department = response?.data;
 
@@ -83,10 +83,13 @@ export default async function DepartmentTable({
                   Nombre
                 </TableHead>
                 <TableHead className="px-4 py-5 font-medium sm:pl-6">
-                  Codigo empresa
+                  Grupo Comercial
                 </TableHead>
                 <TableHead className="px-4 py-5 font-medium sm:pl-6">
-                  Codigo empresa
+                  Oficina Empresa
+                </TableHead>
+                <TableHead className="px-4 py-5 font-medium sm:pl-6">
+                  Oficina Masivo
                 </TableHead>
                 <TableHead className="relative py-3 pl-6 pr-3"></TableHead>
               </TableRow>
@@ -102,6 +105,9 @@ export default async function DepartmentTable({
                   </TableCell>
                   <TableCell className="whitespace-nowrap py-3 pl-6 pr-3">
                     {item.name}
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap py-3 pl-6 pr-3">
+                    {item.comercial_group_eid}
                   </TableCell>
                   <TableCell className="whitespace-nowrap py-3 pl-6 pr-3">
                     {item.store_code_legal}

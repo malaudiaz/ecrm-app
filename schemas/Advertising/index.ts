@@ -32,8 +32,9 @@ export const CampaignSchema = z.object({
 export const DepartmentSchema = z.object({
   eid: z.string().trim(),
   code: z
-    .string({ required_error: "Codigo requerido" })
-    .max(10, { message: "El codigo no debe tener mas de 10 caracteres" })
+    .string({ required_error: "Código requerido" })
+    .min(1, { message: "El código debe tener al menos 1 carácter"})
+    .max(3, { message: "El código no debe tener mas de 3 caracteres" })
     .trim(),
   name: z
     .string({ required_error: "Nombre de la departamento es requerido" })

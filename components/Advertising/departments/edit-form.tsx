@@ -60,10 +60,10 @@ export default function EditForm({department}:{department: DepartmentType}){
                     <div className="relative">
                       <FormControl>
                         <Input
-                          className="peer block w-full rounded-md border border-neutral-200 py-[9px] text-sm outline-2 placeholder:text-neutral-500"
+                          className="peer block w-[100px] rounded-md border border-neutral-200 py-[9px] text-sm outline-2 placeholder:text-neutral-500"
                           {...field}
                           disabled={isPending}
-                          placeholder="Codigo"
+                          placeholder="Código"
                           type="text"
                         />
                       </FormControl>
@@ -82,7 +82,7 @@ export default function EditForm({department}:{department: DepartmentType}){
                     <div className="relative">
                       <FormControl>
                         <Input
-                          className="peer block w-[100px] rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
+                          className="peer block w-full rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
                           {...field}
                           disabled={isPending}
                           placeholder="Nombre"
@@ -100,14 +100,14 @@ export default function EditForm({department}:{department: DepartmentType}){
                 name="comercial_group_eid"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Nombre</FormLabel>
+                    <FormLabel>Grupo Comercial</FormLabel>
                     <div className="relative">
                       <FormControl>
                         <Input
                           className="peer block w-[100px] rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
                           {...field}
                           disabled={isPending}
-                          placeholder="Comercial group id"
+                          placeholder="Grupo Comercial"
                           type="text"
                         />
                       </FormControl>
@@ -122,14 +122,14 @@ export default function EditForm({department}:{department: DepartmentType}){
                 name="store_code_legal"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Nombre</FormLabel>
+                    <FormLabel>Oficina Empresa</FormLabel>
                     <div className="relative">
                       <FormControl>
                         <Input
                           className="peer block w-[100px] rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
                           {...field}
                           disabled={isPending}
-                          placeholder="Codigo Legal"
+                          placeholder="Código"
                           type="text"
                         />
                       </FormControl>
@@ -144,14 +144,14 @@ export default function EditForm({department}:{department: DepartmentType}){
                 name="store_code_natural"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Codigo natural</FormLabel>
+                    <FormLabel>Oficina Masivo</FormLabel>
                     <div className="relative">
                       <FormControl>
                         <Input
                           className="peer block w-[100px] rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
                           {...field}
                           disabled={isPending}
-                          placeholder="Codigo natural"
+                          placeholder="Código"
                           type="text"
                         />
                       </FormControl>

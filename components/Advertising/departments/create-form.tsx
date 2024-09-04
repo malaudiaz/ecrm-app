@@ -32,6 +32,7 @@ export const CreateForm = () => {
       eid: "",
       code: "",
       name: "",
+      comercial_group_eid: "",
       store_code_legal: "",
       store_code_natural: "",
     },
@@ -77,14 +78,14 @@ export const CreateForm = () => {
                 name="code"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Codigo</FormLabel>
+                    <FormLabel>Código</FormLabel>
                     <div className="relative">
                       <FormControl>
                         <Input
-                          className="peer block w-full rounded-md border border-neutral-200 py-[9px] text-sm outline-2 placeholder:text-neutral-500"
+                          className="peer block w-[100px] rounded-md border border-neutral-200 py-[9px] text-sm outline-2 placeholder:text-neutral-500"
                           {...field}
                           disabled={isPending}
-                          placeholder="Codigo del departamento"
+                          placeholder="Código"
                           type="text"
                         />
                       </FormControl>
@@ -103,10 +104,10 @@ export const CreateForm = () => {
                     <div className="relative">
                       <FormControl>
                         <Input
-                          className="peer block w-[100px] rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
+                          className="peer block w-full rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
                           {...field}
                           disabled={isPending}
-                          placeholder="Año"
+                          placeholder="Nombre del Departamento"
                           type="text"
                         />
                       </FormControl>
@@ -121,14 +122,14 @@ export const CreateForm = () => {
                 name="comercial_group_eid"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Id grupo comercial</FormLabel>
+                    <FormLabel>Grupo Comercial</FormLabel>
                     <div className="relative">
                       <FormControl>
                         <Input
                           className="peer block w-[100px] rounded-md border border-neutral-200 py-[9px] text-sm outline-sky-500 placeholder:text-neutral-500"
                           {...field}
                           disabled={isPending}
-                          placeholder="Id grupo comercial"
+                          placeholder="Grupo Comercial"
                           type="text"
                         />
                       </FormControl>

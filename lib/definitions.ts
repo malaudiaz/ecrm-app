@@ -4,7 +4,6 @@ export interface IMenu {
   icon: React.ReactNode;
   text: string;
   href: string;
-  path: string;
 }
 
 export type AdvertisingTable = {

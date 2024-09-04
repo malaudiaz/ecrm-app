@@ -39,7 +39,6 @@ const DashboardPage = () => {
             </svg>,
             text: "Inicio",
             href: "/dashboard",
-            path: "dashboard"
         },
         {
             icon: <svg
@@ -69,7 +68,6 @@ const DashboardPage = () => {
             </svg>,
             text: "Públicidad",
             href: "/advertising",
-            path: "advertising"
         },
     ]
 

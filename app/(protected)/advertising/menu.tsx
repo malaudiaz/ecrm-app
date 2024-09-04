@@ -31,7 +31,6 @@ export const mainMenu: IMenu[] = [
     ),
     text: "Públicidad",
     href: "/advertising",
-    path: "advertising",
   },
   {
     icon: (
@@ -53,7 +52,6 @@ export const mainMenu: IMenu[] = [
     ),
     text: "Campañas",
     href: "/advertising/campaign",
-    path: "campaign",
   },
   {
     icon: (
@@ -85,7 +83,6 @@ export const mainMenu: IMenu[] = [
     ),
     text: "Departamentos",
     href: "/advertising/departments",
-    path: "departments",
   },
   {
     icon: (
@@ -108,7 +105,6 @@ export const mainMenu: IMenu[] = [
 
     text: "Especialistas",
     href: "/advertising/specialist",
-    path: "specialists",
   },
   {
     icon: (
@@ -140,7 +136,6 @@ export const mainMenu: IMenu[] = [
     ),
 
     text: "Configuración",
-    href: "/settings",
-    path: "settings",
+    href: "/advertising/settings",
   },
 ];
