@@ -1,7 +1,7 @@
 import { UpdateButton } from "../../UpdateButton";
 import { DeleteButton } from "../../DeleteButton";
 import { fetchSpecialist } from "@/lib/Advertising/data";
-import { deleteCampaign } from "@/lib/Advertising/data";
+import { deleteSpecialist } from "@/lib/Advertising/data";
 import { notFound } from "next/navigation";
 import {
   Table,
@@ -56,7 +56,7 @@ export default async function SpecialistTable({
                     />
                     <DeleteButton
                       id={item.eid}
-                      onDeleted={deleteCampaign}
+                      onDeleted={deleteSpecialist}
                       alertTitle="Eliminar Especialista"
                       alertText="Desea eliminar éste especialista ?"
                     />
@@ -109,7 +109,7 @@ export default async function SpecialistTable({
                       />
                       <DeleteButton
                         id={item.eid}
-                        onDeleted={deleteCampaign}
+                        onDeleted={deleteSpecialist}
                         alertTitle="Eliminar Especialistas"
                         alertText="Desea eliminar éste especialista ?"
                       />

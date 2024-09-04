@@ -28,6 +28,15 @@ export type DepartmentType = {
   store_code_natural?:string | undefined;
 }
 
+export type SpecialistType = {
+  eid?: string | undefined;
+  code?: string | undefined;
+  user_name?:string | undefined;
+  publish_departament_eid?:string | undefined;
+  is_active?:boolean | undefined;
+}
+
+
 export type ResponseDict = {
   success: boolean;
   detail: string;
@@ -51,6 +60,14 @@ export type ResponseObjDepartment = {
   total_pages?: number;
   data: [{eid?: string, code?: string, name?:string, comercial_group_eid?:string, store_code_legal?:string,store_code_natural?:string}];
 };
+export type ResponseDicDepartment = {
+  success: boolean;
+  detail: string;
+  status_code?: string;
+  total_pages?: number;
+  data: {eid?: string, code?: string, name?:string, comercial_group_eid?:string, store_code_legal?:string,store_code_natural?:string};
+};
+
 export type ResponseObjSpecialist = {
   success: boolean;
   detail: string;
@@ -58,11 +75,10 @@ export type ResponseObjSpecialist = {
   total_pages?: number;
   data: [{eid?: string, user_name?: string, code?:string, publish_departament_eid?:string, is_active?:boolean}];
 };
-
-export type ResponseDicDepartment = {
+export type ResponseDicSpecialist = {
   success: boolean;
   detail: string;
   status_code?: string;
   total_pages?: number;
-  data: {eid?: string, code?: string, name?:string, comercial_group_eid?:string, store_code_legal?:string,store_code_natural?:string};
+  data: {eid?: string, user_name?: string, code?:string, publish_departament_eid?:string, is_active?:boolean};
 };
